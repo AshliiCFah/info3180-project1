@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block main %}
+<div class="properties-wrapper">
+    <h1 class="properties-title">Properties</h1>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }} mt-3">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <div class="property-grid">
+        {% for property in properties %}
+        <div class="property-card">
+            <img src="{{ url_for('static', filename='uploads/' + property.photo) }}"
+                 alt="Property Photo"
+                 class="property-image">
+
+            <div class="property-card-body">
+                <h5 class="property-card-title">{{ property.title }}</h5>
+                <p class="property-location">
+                    <img src="{{ url_for('static', filename='images/pin.png') }}" class="loc-icon">
+                    {{ property.location }}</p>
+                <span class="property-price">${{ property.price }}</span>
+            </div>
+
+            <div class="property-card-footer">
+                <a href="{{ url_for('property_details', propertyid=property.id) }}" class="view-btn">
+                    View Property
+                </a>
+            </div>
+        </div>
+        {% else %}
+        <p>No properties added yet.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

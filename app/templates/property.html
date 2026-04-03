@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block main %}
+
+<div class="property-detail-wrapper">
+
+    <div class="property-detail-card">
+
+        <!-- LEFT SIDE IMAGE -->
+        <div class="property-detail-image">
+            <img src="{{ url_for('static', filename='uploads/' + property.photo) }}" alt="Property Image">
+        </div>
+
+        <!-- RIGHT SIDE INFO -->
+        <div class="property-detail-info">
+
+            <!-- TITLE -->
+            <h2 class="detail-title">
+                {{ property.title }}
+            </h2>
+
+            <!-- BADGES -->
+            <div class="detail-tags">
+                <span class="badge sale">For Sale</span>
+                <span class="badge type">{{ property.property_type }}</span>
+            </div>
+
+            <!-- DESCRIPTION -->
+            <p class="detail-description">
+                {{ property.description }}
+            </p>
+
+            <!-- BED + BATH -->
+            <div class="detail-icons">
+                <span>
+                    <img src="{{ url_for('static', filename='images/bed.png') }}" class="icon">
+                    {{ property.bedrooms }} Bedrooms
+                </span>
+                
+                
+                <span>
+                    <img src="{{ url_for('static', filename='images/bath.png') }}" class="icon">
+                    {{ property.bathrooms }} Bathrooms
+                </span>
+            </div>
+            
+            <p class="detail-location">
+                <img src="{{ url_for('static', filename='images/pin.png') }}" class="icon">
+                {{ property.location }}
+            </p>
+
+            <!-- BUTTON -->
+            <a href="#" class="email-btn">
+                Email Realtor
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
